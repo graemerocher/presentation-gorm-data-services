@@ -168,7 +168,7 @@ interface ProductService {
 
 # Optimized Writes
 
-- Use batch update/delete queries is more efficient!
+- Using batch update/delete queries is more efficient!
 
 ```groovy
 @Service(Product)
@@ -249,3 +249,59 @@ interface ProductService {
 # [fit] DEMO
 
 * Multi-Tenancy with Data Services
+
+---
+
+![original](images/oci-bg.png)
+
+[.hide-footer]
+
+# Multi-Tenancy Challenges
+
+* Ensuring each query returns data only for the current tenant
+* 2 distinct modes: Data Partitioning or Isolating connections (Sessions)
+* If different sessions/connections are used for each tenant, you have to 
+wrap each tenant operation with its own transaction!
+
+---
+
+![original](images/oci-bg.png)
+
+[.hide-footer]
+
+# Multi-Tenancy and Data Services
+
+* A match made in heaven
+
+```java
+@Service(Product)
+@CurrentTenant
+interface ProductService {
+	// automatic resolution of current tenant
+	List<Product> listProducts()
+}
+
+```
+
+---
+
+![original](images/oci-bg.png)
+
+[.hide-footer]
+
+# Summary
+
+* Data Services are *powerful* and *awesome*
+* They improve code maintenance and application performance
+* They simplify Multi-Tenant application development
+* ... and they make JPA-QL fun again!
+
+---
+
+![original](images/oci-bg.png)
+
+[.hide-footer]
+
+# [fit] Q & A
+
+
