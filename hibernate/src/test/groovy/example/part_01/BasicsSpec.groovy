@@ -17,8 +17,10 @@ package example.part_01
 
 import example.HibernateSpec
 import example.Product
+import grails.gorm.services.Query
 import grails.gorm.services.Service
 import grails.gorm.transactions.Rollback
+import rx.Observable
 
 /**
  * @author graemerocher
@@ -26,17 +28,30 @@ import grails.gorm.transactions.Rollback
  */
 class BasicsSpec extends HibernateSpec {
 
-    @Rollback
     void "test data service basics"() {
         given:
         ProductService productService = datastore.getService(ProductService)
 
         expect:
-        productService.countProducts() == 2
+        productService.findProductType("Apple") == "Fruit"
     }
 }
 
 @Service(Product)
 interface ProductService {
     int countProducts()
+
+
+    Observable<Product> find(String name)
+
+    @Query("update ${Product p} set ${p.type} = $type where ${p.id} = $id")
+    void update(Long id, String type)
+
+
+    @Query("select new map(${p.type} as type, ${p.name} as name) from ${Product p} where ${p.type} = $type")
+    List<Map<String, String>> findByType(String type)
+
+
+    String findProductType(String name)
+
 }

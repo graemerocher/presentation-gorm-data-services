@@ -11,6 +11,17 @@ subprojects {
         maven { url "https://repo.grails.org/grails/core" }
     }
 
+    configurations {
+        all {
+            resolutionStrategy {
+                force "org.codehaus.groovy:groovy:$groovyVersion"
+                force "org.codehaus.groovy:groovy-all:$groovyVersion"
+                dependencySubstitution {
+                    substitute module('org.codehaus.groovy:groovy-all') with module("org.codehaus.groovy:groovy:$groovyVersion")
+                }
+            }
+        }
+    }
 
     dependencies {
         compile "org.codehaus.groovy:groovy:$groovyVersion"
