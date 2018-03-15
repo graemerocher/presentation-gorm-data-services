@@ -1,0 +1,6 @@
+dependencies {
+	compile "org.grails:grails-datastore-gorm:6.1.9.RELEASE"
+	compile "org.grails:grails-datastore-gorm-mongodb:6.1.5.RELEASE"
+	testCompile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0'
+
+}
