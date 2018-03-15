@@ -13,30 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.part_01
+package example
 
-import example.HibernateSpec
-import example.Product
-import grails.gorm.services.Service
-import grails.gorm.transactions.Rollback
+import grails.gorm.annotation.Entity
 
 /**
  * @author graemerocher
  * @since 1.0
  */
-class BasicsSpec extends HibernateSpec {
-
-    @Rollback
-    void "test data service basics"() {
-        given:
-        ProductService productService = datastore.getService(ProductService)
-
-        expect:
-        productService.countProducts() == 2
-    }
-}
-
-@Service(Product)
-interface ProductService {
-    int countProducts()
+@Entity
+class Club {
+    String name
+    Integer supporters
+    static hasOne = [stadium: Stadium]
 }

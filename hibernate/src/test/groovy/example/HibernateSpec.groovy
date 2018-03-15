@@ -25,9 +25,9 @@ import spock.lang.Specification
  * @author graemerocher
  * @since 1.0
  */
-class AbstractProductSpec extends Specification {
+class HibernateSpec extends Specification {
     @Shared @AutoCleanup HibernateDatastore datastore =
-            new HibernateDatastore(AbstractProductSpec.package)
+            new HibernateDatastore(HibernateSpec.package)
 
     def setup() {
         TransactionService transactionService = datastore.getService(TransactionService)

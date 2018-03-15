@@ -15,7 +15,7 @@
  */
 package example.part_01
 
-import example.HibernateSpec
+import example.MongoSpec
 import example.Product
 import grails.gorm.services.Service
 import grails.gorm.transactions.Rollback
@@ -24,7 +24,7 @@ import grails.gorm.transactions.Rollback
  * @author graemerocher
  * @since 1.0
  */
-class BasicsSpec extends HibernateSpec {
+class BasicsSpec extends MongoSpec {
 
     @Rollback
     void "test data service basics"() {
